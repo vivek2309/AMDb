@@ -1,0 +1,11 @@
+<div class="wrapper">
+  <div class="content">
+    <ng-container *ngFor="let item of list">
+        <app-tile class="tile" [tile-info]="item"></app-tile>
+    </ng-container>
+  </div>
+  <div class="paginator">
+    <mat-paginator [length]="paginatorLength" [pageSize]="20" (page)="pageChangeHandler($event)">
+    </mat-paginator>
+  </div>
+</div>

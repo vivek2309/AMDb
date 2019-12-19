@@ -1,0 +1,40 @@
+@import '../../sass/main';
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    .header {
+        height: $min_height;
+        flex-basis: $min_height;
+        align-items: center;
+        display: flex;
+        .title {
+            color: white;
+            font-weight: $light-dark;
+        }
+    }
+    .body {
+        height: calc(100% - (#{$min_height} * 2));
+        display: flex;
+        justify-content: space-between;
+        .tile {
+            width: 180px;
+            position: relative;
+        }
+        
+    }
+    .footer {
+        height: $min_height;
+        flex-basis: $min_height;
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;
+        .link {
+            &--more {
+                color: white;
+                cursor: pointer;
+            }
+        }
+    }
+}

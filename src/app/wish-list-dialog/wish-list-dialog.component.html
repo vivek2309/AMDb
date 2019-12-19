@@ -1,0 +1,10 @@
+<div class="wrapper">
+  <div class="header">
+    <span class="logo">My Watch List</span>
+  </div>
+  <div class="body">
+      <ng-container *ngFor="let item of itemList">
+          <app-tile class="tile" [tile-info]="item"></app-tile>
+      </ng-container>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+<div class="wrapper">
+  <div class="header">
+    <span class="title">{{title}}</span>
+  </div>
+  <div class="body">
+    <ng-container *ngFor="let movie of itemList; let i=index">
+      <app-tile *ngIf="i<10" class="tile" [tile-info]="movie"></app-tile>
+    </ng-container>
+    
+  </div>
+  <div class="footer">
+    <div *ngIf="itemList && itemList.length"><span class="link--more" [routerLink]="getRouterLink()" (click)="moreHandler()">More...</span></div>
+  </div>
+</div>

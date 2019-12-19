@@ -1,0 +1,24 @@
+<form action="" [formGroup]="form">
+  <mat-card class="card">
+    <div class="common search-field">
+      <mat-form-field class="example-full-width" floatLabel="never">
+        <input matInput [placeholder]="view.search_placeholder"  formControlName="query">
+      </mat-form-field>
+    </div>
+    <div class="common combo-field">
+      <mat-form-field floatLabel="never">
+        <mat-label>Search</mat-label>
+        <mat-select formControlName="searchType">
+          <mat-option *ngFor="let type of searchTypes" [value]="type.value">
+            {{type.label}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="common search-button" [class.disabled]="!form.valid" (click)="searchHandler()">
+      <i class="material-icons">
+        search
+      </i>
+    </div>
+  </mat-card>
+</form>

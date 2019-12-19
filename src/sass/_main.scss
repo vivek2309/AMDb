@@ -1,0 +1,10 @@
+// Abstract folder scss imports
+@import "abstracts/functions";
+@import "abstracts/mixins";
+@import "abstracts/variables";
+
+// Base folder scss imports
+@import "base/animations";
+@import "base/base";
+@import "base/typography";
+@import "base/utilities";

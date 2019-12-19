@@ -1,0 +1,38 @@
+<!-- <div class="movie-card">
+  <mat-card class="movie-card movie-card--front">
+    <div class="poster">
+      <img [src]="tileInfo.poster_path" [alt]="tileInfo.original_title">
+    </div>
+  </mat-card>
+</div> -->
+
+
+
+<div class="card">
+  <div class="card__side card__side--front">
+    <div class="movie-card">
+      <mat-card class="movie-card">
+        <div class="poster">
+          <img *ngIf="type!=CELEB" [src]="tileInfo.poster_path" [alt]="tileInfo.original_title">
+          <img *ngIf="type==CELEB" [src]="tileInfo.profile_path" [alt]="tileInfo.name">
+
+          <div *ngIf="type==CELEB" class="name">{{tileInfo.name}}</div>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+  <div class="card__side card__side--back">
+    <div class="movie-card">
+      <mat-card class="movie-card">
+        <div class="visit-tile">
+          <div class="rating"><i class="material-icons icon">star</i> <span class="points">
+              <p>{{tileInfo.vote_average}}/10</p>
+              <span class="vote_count">{{tileInfo.vote_count}}</span>
+            </span>
+          </div>
+          <span class="btn" (click)="redirectTo(tileInfo.id)" replaceUrl="true">Visit</span>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>

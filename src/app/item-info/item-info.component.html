@@ -1,0 +1,104 @@
+<div class="wrapper">
+  <div class="header">
+    <div class="back" routerLink="/"> <i class="material-icons">keyboard_arrow_left</i> </div>
+    <div class="search-bar">
+      <app-search-bar (searchResult)="searchHandler($event)"></app-search-bar>
+    </div>
+  </div>
+  <div class="body">
+    <ng-container *ngIf="!isSearchData">
+      <div class="left">
+        <ng-container *ngIf="itemInfo">
+          <div class="poster">
+            <img *ngIf="searchType!=CELEB" [src]="itemInfo.poster_path" [alt]="itemInfo.title">
+            <img *ngIf="searchType==CELEB" [src]="itemInfo.profile_path" [alt]="itemInfo.name">
+          </div>
+          <div class="basic-info">
+            <h3>{{searchType==CELEB?itemInfo.name:itemInfo.title}}</h3>
+            <div class="section" *ngIf="searchType!==CELEB">
+              <div class="label">Category</div>
+              <div class="items">
+                <mat-chip-list>
+                  <mat-chip *ngFor="let gen of itemInfo.genres" class="item" color="primary" selected>{{gen.name}}
+                  </mat-chip>
+                </mat-chip-list>
+              </div>
+            </div>
+            <div class="section">
+              <div class="label">{{searchType==CELEB?'Birthday':'Release Date'}}</div>
+              <div class="text" *ngIf="searchType==CELEB">
+                {{itemInfo.birthday?(itemInfo.birthday | date:'fullDate' ): ''}}
+              </div>
+              <div class="text" *ngIf="searchType!==CELEB">
+                {{itemInfo.release_date?(itemInfo.release_date | date:'fullDate' ): ''}}
+              </div>
+            </div>
+            <div class="section" *ngIf="searchType!=CELEB">
+              <div class="label">Status</div>
+              <div class="text">
+                {{itemInfo.status}}
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+      <div class="right">
+        <ng-container *ngIf="itemInfo">
+          <mat-card class="right__header" *ngIf="searchType!=CELEB">
+            <div class="rating"><i class="material-icons icon">star</i> <span class="points">
+                <p>{{itemInfo.vote_average}}/10</p>
+                <span class="vote_count">{{itemInfo.vote_count}}</span>
+              </span>
+            </div>
+            <button mat-icon-button color="warn"
+              [ngClass]="{'_disabled':isPresentInWishlist(itemInfo.id)==-1}" (click)="addDeleteWishList(itemInfo.id)">
+              <mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon>
+            </button>
+            <!-- <button mat-icon-button disabled>
+                <mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon>
+              </button> -->
+          </mat-card>
+          <mat-card class="right__body">
+            <section>
+              <h3 class="title">{{searchType==CELEB?'Biography':'Overview'}}</h3>
+              <div class="content">
+                <p>{{searchType==CELEB?itemInfo.biography:itemInfo.overview}}</p>
+              </div>
+            </section>
+            <section >
+              <h3 class="title">{{searchType==CELEB?'Also Known As':'Company Credits'}}</h3>
+              <div class="content">
+                <mat-chip-list>
+                  <mat-chip *ngFor="let item of itemInfo.also_known_as" class="item" color="primary" selected>
+                    {{item}}
+                  </mat-chip>
+                </mat-chip-list>
+              </div>
+            </section>
+            <section *ngIf="searchType!==CELEB">
+              <h3 class="title">{{searchType==CELEB?'Biography':'Production Country'}}</h3>
+              <div class="content">
+                <mat-chip-list>
+                  <mat-chip *ngFor="let item of itemInfo.production_countries" class="item" color="primary" selected>
+                    {{item.name}}
+                  </mat-chip>
+                </mat-chip-list>
+              </div>
+            </section>
+          </mat-card>
+        </ng-container>
+      </div>
+    </ng-container>
+    <div *ngIf="isSearchData" class="result">
+      <div class="result__tile">
+        <ng-container *ngFor="let tile of searchList">
+          <app-tile *ngIf="tile" class="tile" [tile-info]="tile"></app-tile>
+        </ng-container>
+      </div>
+      <div class="result__paginator">
+        <mat-paginator [length]="paginatorLength" [pageSize]="20" (page)="pageChangeHandler($event)">
+        </mat-paginator>
+      </div>
+    </div>
+  </div>
+</div>

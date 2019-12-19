@@ -1,0 +1,33 @@
+<div class="wrapper">
+    <div class="header">
+        <div class="header--top">
+            <span></span>
+            <span class="logo">AMDb</span>
+            <div class="side-box">
+                <span (click)="openDialog()" style="cursor: pointer;">My Watch List</span>
+            </div>
+        </div>
+        <div class="header--middle">
+            <span class="text">{{view.header_text}}</span>
+        </div>
+        <div class="header--end">
+            <div class="search-bar">
+                <app-search-bar (searchResult)="searchHandler($event)"></app-search-bar>
+            </div>
+        </div>
+    </div>
+    <div class="body">
+        <section *ngIf="!isSearchData">
+            <app-section [title]="view.recent_title" [movie-list]="recentReleasedMovies" [type]="RECENT_RELEASE">
+            </app-section>
+        </section>
+
+        <section *ngIf="!isSearchData">
+            <app-section [title]="view.top_rated_title" [movie-list]="topRatedMovies" [type]="TOP_RATED"></app-section>
+        </section>
+
+        <section *ngIf="isSearchData">
+            <app-section [title]="view.search_title" [movie-list]="searchList" [type]="SEARCH"></app-section>
+        </section>
+    </div>
+</div>

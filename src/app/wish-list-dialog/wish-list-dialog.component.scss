@@ -1,0 +1,35 @@
+@import "../../sass/main";
+.wrapper {
+    height: 100%;
+    width: 100%;
+    .header {
+        padding: 0 1rem;
+            height: $min_height;
+            display: flex;
+            justify-content: space-between;
+            background: rgba(0, 0, 0, 0.60);
+            .logo {
+                // background-color: gold;
+                color: white;
+                display: flex;
+                align-items: center;
+                padding: 0 8px;
+                font-weight: $light-dark;
+                border-radius: 3px;
+            }
+    }
+    .body {
+        height: calc(100% - #{$min_height});
+        width: 100%;
+        border: 1px solid black;
+        border-top: none;
+        padding: 1rem;
+        overflow-y: auto;
+        .tile {
+            width: 190px;
+            height: 220px;
+            display: inline-block;
+            position: relative;
+        }
+    }
+}
