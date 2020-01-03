@@ -47,5 +47,5 @@ Say what the step will be
 
 ## Authors
 
-* **Ravi Kumar** - *Initial work* - [AMDb](https://github.com/concept4ravi/AMDb)
+* **Vivek Singh** - *Initial work* - [AMDb](https://github.com/vivek2309/AMDb)
 
